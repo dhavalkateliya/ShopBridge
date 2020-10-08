@@ -1,2 +1,0 @@
-# ShopeBridge
-TestProject
