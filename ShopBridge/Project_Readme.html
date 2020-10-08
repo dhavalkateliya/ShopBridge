@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Shop Bridge</title>
+    <style>
+        body {
+            background: #fff;
+            color: #505050;
+            font: 14px 'Segoe UI', tahoma, arial, helvetica, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+
+        #header {
+            background: #efefef;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: normal;
+            margin: 0;
+            padding: 0 30px;
+            line-height: 150px;
+        }
+
+        p {
+            font-size: 20px;
+            color: #fff;
+            background: #969696;
+            padding: 0 30px;
+            line-height: 50px;
+        }
+
+        #main {
+            padding: 5px 30px;
+        }
+
+        .section {
+            width: 20%;
+            float: left;
+            margin: 0 0 0 4%;
+        }
+
+            .section h2 {
+                font-size: 13px;
+                text-transform: uppercase;
+                margin: 0;
+                border-bottom: 1px solid silver;
+                padding-bottom: 12px;
+                margin-bottom: 8px;
+            }
+
+            .section.first {
+                margin-left: 0;
+            }
+
+                .section.first h2 {
+                    font-size: 24px;
+                    text-transform: none;
+                    margin-bottom: 25px;
+                    border: none;
+                }
+
+                .section.first li {
+                    border-top: 1px solid silver;
+                    padding: 8px 0;
+                }
+
+            .section.last {
+                margin-right: 0;
+            }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            line-height: 20px;
+        }
+
+        li {
+            padding: 4px 0;
+            list-style:disc;
+        }
+
+        a {
+            color: #267cb2;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <h1>Shop Bridge</h1>
+        <p>Developed by : Dhaval Kateliya | Email : dk.kateliya.dk@gmail.com</p>
+    </div>
+
+    <div id="main">
+        <div class="section">
+            <h2>Technology used</h2>
+            <ul>
+                <li>Front end / backend : Asp.net MVC</li>
+                <li>Database MSSQL with EntityFramework integration</li>
+                <li>JQuery datatable with server side for listing,paging,searching,sorting of records</li>
+                <li>Basic BootStrap for minimal and effective UI</li>
+
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Time given for tasks</h2>
+            <ul>
+                <li>Backend with mvc pages for UI : <b>4-5 hrs</b></li>
+                <li>Datatable Integration with server side : <b>3 hrs</b></li>
+                <li>Form Validations : <b>1 hrs</b></li>
+                <li>Testing : <b>1 hrs</b></li>
+                <li>Preparing Readme page : <b>1 hrs</b></li>
+
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>How to run project ? / Documents</h2>
+            <ul>
+                <li>It is basic asp.net mvc project with .NET Framework 4.5.2 version so for running it makesure you have system capable of running .net applications with appropriate configuration.</li>
+                <li>For Database SQL server is used</li>
+                <li>Make sure you change the connection string with key name "DefaultConnection" into web.config file before running application</li>
+                <li>Build and run the project and Default page will showup with Shop Bridge page.</li>
+            </ul>
+            <h3>Documents</h3>
+            <ul>
+                
+                <li><a href="ShopBridgeScript.txt" target="_blank" download><b>SQL script</b></a> </li>
+               
+            </ul>
+        </div>
+        <div class="section">
+            <h2>Functionality coverd</h2>
+            <ul>
+                <li>Listing of availble products in inventory</li>
+                <li>Addition of new product</li>
+                <li>Edit/View details of the product</li>
+                <li>Delete Product</li>
+                <li>Listing, pagging, sorting, searching of products</li>
+
+
+            </ul>
+            
+        </div>
+       
+    </div>
+
+</body>
+</html>

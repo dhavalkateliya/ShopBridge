@@ -1,0 +1,206 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary list-panel" id="list-panel">
+            <div class="panel-heading list-panel-heading">
+                <i class="fa fa-question-circle text-right"></i>
+                <h1 class="panel-title list-panel-title">Shop Bridge inventory</h1>
+
+                <button type="button" class="btn btn-default btn-md" data-toggle="modal" data-url="@Url.Action("Create","Product")" id="btnCreateProduct">
+                    <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Add Product
+                </button>
+            </div>
+            <div class="panel-body">
+                <table id="Products-data-table" class="table table-striped table-bordered" style="width:100%;">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createProductModal" tabindex="-1" role="dialog" aria-labelledby="CreateProductModal" aria-hidden="true" data-backdrop="static">
+    <div id="createProductContainer">
+    </div>
+</div>
+
+<div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="EditProductModal" aria-hidden="true" data-backdrop="static">
+    <div id="editProductContainer">
+    </div>
+</div>
+
+<div class="modal fade" id="detailsProductModal" tabindex="-1" role="dialog" aria-labelledby="DetailsProductModal" aria-hidden="true" data-backdrop="static">
+    <div id="detailsProductContainer">
+    </div>
+</div>
+
+<div class="modal fade" id="deleteProductModal" tabindex="-1" role="dialog" aria-labelledby="DeleteProductModal" aria-hidden="true" data-backdrop="static">
+    <div id="deleteProductContainer">
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+    
+<script type="text/javascript">
+        var ProductListVM;
+        $(function () {
+            ProductListVM = {
+                dt: null,
+
+                init: function () {
+                    dt = $('#Products-data-table').DataTable({
+                        "serverSide": true,
+                        "processing": true,
+                        "ajax": {
+                            "url": "@Url.Action("Get","Product")",
+                            "data": function (data) {
+
+                                data.FacilitySite = $("#FacilitySite").val();
+                                data.Building = $("#Building").val();
+                                data.Manufacturer = $("#Manufacturer").val();
+                                data.Status = $("#Status").val();
+                            }
+                        },
+                        "columns": [
+                            { "title": "ProdcutName", "data": "ProdcutName", "searchable": true },
+                            { "title": "Description", "data": "Description" },
+                            { "title": "Price", "data": "Price"},
+                            { "title": "Quantity", "data": "Quantity"},
+                            
+                            {
+                                "title": "Actions",
+                                "data": "ID",
+                                "searchable": false,
+                                "sortable": false,
+                                "render": function (data, type, full, meta) {
+                                    return '<a href="@Url.Action("Edit", "Product")?id=' + data + '" class="editProduct">Edit</a> | <a href="@Url.Action("Details", "Product")?id=' + data + '" class="detailsProduct">Details</a> | <a href="@Url.Action("Delete", "Product")?id=' + data + '" class="deleteProduct">Delete</a>';
+                                }
+                            }
+                        ],
+                        "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                    });
+                },
+
+                refresh: function () {
+                    dt.ajax.reload();
+                }
+            }
+
+            // Advanced Search Modal Search button click handler
+            $('#btnPerformAdvancedSearch').on("click", ProductListVM.refresh);
+
+            // initialize the datatables
+            ProductListVM.init();
+
+            $("#btnCreateProduct").on("click", function () {
+
+                var url = $(this).data("url");
+
+                $.get(url, function (data) {
+                    $('#createProductContainer').html(data);
+
+                    $('#createProductModal').modal('show');
+                });
+
+            });
+
+            
+
+            $('#Products-data-table').on("click", ".editProduct", function (event) {
+
+                event.preventDefault();
+
+                var url = $(this).attr("href");
+
+                $.get(url, function (data) {
+                    $('#editProductContainer').html(data);
+
+                    $('#editProductModal').modal('show');
+                });
+
+            });
+
+            
+
+            
+
+            $('#Products-data-table').on("click", ".detailsProduct", function (event) {
+
+                event.preventDefault();
+
+                var url = $(this).attr("href");
+
+                $.get(url, function (data) {
+                    $('#detailsProductContainer').html(data);
+
+                    $('#detailsProductModal').modal('show');
+                });
+
+            });
+
+
+            
+
+            $('#Products-data-table').on("click", ".deleteProduct", function (event) {
+
+                event.preventDefault();
+
+                var url = $(this).attr("href");
+
+                $.get(url, function (data) {
+                    $('#deleteProductContainer').html(data);
+
+                    $('#deleteProductModal').modal('show');
+                });
+
+            });
+
+        });
+
+    /**** Create Product Ajax Form CallBack ********/
+
+    function CreateProductSuccess(data) {
+
+        if (data != "success") {
+            $('#createProductContainer').html(data);
+            return;
+        }
+        $('#createProductModal').modal('hide');
+        $('#createProductContainer').html("");
+        ProductListVM.refresh();
+
+    }
+
+    /**** Edit Product Ajax Form CallBack ********/
+
+    function UpdateProductSuccess(data) {
+
+        if (data != "success") {
+            $('#editProductContainer').html(data);
+            return;
+        }
+        $('#editProductModal').modal('hide');
+        $('#editProductContainer').html("");
+        ProductListVM.refresh();
+
+    }
+
+    /**** Delet Product Ajax Form CallBack ********/
+
+    function DeleteProductSuccess(data) {
+
+        if (data != "success") {
+            $('#deleteProductContainer').html(data);
+            return;
+        }
+        $('#deleteProductModal').modal('hide');
+        $('#deleteProductContainer').html("");
+        ProductListVM.refresh();
+
+    }
+
+
+</script>
+    
+ }

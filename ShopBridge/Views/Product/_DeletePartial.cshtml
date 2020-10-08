@@ -1,0 +1,59 @@
+﻿@model ShopBridge.Models.ProductViewModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            
+            <h3>Are you sure you want to delete this?</h3>
+
+        </div>
+
+        <div class="modal-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProdcutName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ProdcutName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Quantity)
+                </dd>
+
+               
+
+
+
+            </dl>
+
+            @using (Ajax.BeginForm("Delete", "Product", null, new AjaxOptions { HttpMethod = "Post", OnSuccess = "DeleteProductSuccess" }, new { @class = "form-horizontal", role = "form" }))
+            {
+
+                <div class="form-actions no-color">
+                    @Html.HiddenFor(x => x.ID)
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index",null,new { data_dismiss = "modal" })
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
