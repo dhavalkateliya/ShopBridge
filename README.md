@@ -15,7 +15,6 @@
   * Datatable Integration with server side : 3 hrs
   * Form Validations : 1 hrs
   * Testing : 1 hrs
-  * Preparing Readme page : 1 hrs
 ## How to run project ? / Documents
   * It is basic asp.net mvc project with .NET Framework 4.5.2 version so for running it makesure you have system capable of running .net applications with appropriate configuration.
   * For Database SQL server is used
