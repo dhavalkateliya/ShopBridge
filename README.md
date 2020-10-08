@@ -20,4 +20,4 @@
   * For Database SQL server is used
   * Make sure you change the connection string with key name "DefaultConnection" into web.config file before running application
   * Build and run the project and Default page will showup with Shop Bridge page.
-  * For SQL Script kindly check /ShopBridge/ShopBridgeScript.txt
+  * For SQL Script kindly check [here](https://github.com/dhavalkateliya/ShopeBridge/blob/master/ShopBridge/ShopBridgeScript.txt)
